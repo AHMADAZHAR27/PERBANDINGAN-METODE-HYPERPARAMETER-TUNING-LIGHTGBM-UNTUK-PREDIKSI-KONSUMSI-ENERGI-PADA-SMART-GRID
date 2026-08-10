@@ -1,0 +1,20 @@
+{
+    "models": [
+        "LightGBM Baseline",
+        "LightGBM Random Search",
+        "LightGBM Bayesian Optimization",
+        "LightGBM Optuna"
+    ],
+    "task": "Regression",
+    "objective": "regression",
+    "boosting_type": "gbdt",
+    "random_state": 42,
+    "number_of_features": 38,
+    "feature_source": "X_train.columns",
+    "evaluation_metrics": [
+        "MAE",
+        "RMSE",
+        "SMAPE",
+        "R2"
+    ]
+}
