@@ -1,114 +1,143 @@
 # Perbandingan Metode Hyperparameter Tuning LightGBM untuk Prediksi Konsumsi Energi pada Smart Grid
 
-Repository ini berisi kode, dataset pendukung, hasil eksperimen, dan dokumentasi penelitian mengenai perbandingan metode *hyperparameter tuning* pada model Light Gradient Boosting Machine (LightGBM) untuk prediksi konsumsi energi pada Smart Grid.
+Repository ini berisi implementasi, dokumentasi, dataset pendukung, hasil eksperimen, dan implementasi model dari penelitian mengenai perbandingan metode *hyperparameter tuning* pada Light Gradient Boosting Machine (LightGBM) untuk prediksi konsumsi energi pada Smart Grid.
 
-## Deskripsi Penelitian
+---
 
-Penelitian ini menggunakan dataset HEAPO sebagai sumber data konsumsi energi rumah tangga. Data kemudian melalui tahapan *data understanding*, *data integration*, *exploratory data analysis*, *preprocessing*, *feature engineering*, dan *data splitting* sebelum digunakan dalam pemodelan.
+## 1. Deskripsi Penelitian
 
-Model LightGBM digunakan sebagai model baseline. Selanjutnya dilakukan optimasi *hyperparameter* menggunakan tiga metode, yaitu:
+Penelitian ini berfokus pada prediksi konsumsi energi menggunakan model LightGBM dengan memanfaatkan data konsumsi energi dan variabel pendukung dari dataset HEAPO.
+
+Data yang digunakan memiliki karakteristik *time series*, sehingga tahapan pengolahan data mempertahankan urutan waktu. Sebelum pemodelan, data melalui proses *data understanding*, *data integration*, Exploratory Data Analysis (EDA), preprocessing, dan *feature engineering*.
+
+LightGBM digunakan sebagai model baseline. Selanjutnya, dilakukan optimasi *hyperparameter* menggunakan tiga metode, yaitu:
 
 - Random Search
 - Bayesian Optimization
 - Optuna (TPE)
 
-Performa model dievaluasi menggunakan:
+Perbandingan metode dilakukan berdasarkan performa prediksi, stabilitas model, dan waktu komputasi.
 
-- MAE (*Mean Absolute Error*)
-- RMSE (*Root Mean Squared Error*)
-- SMAPE (*Symmetric Mean Absolute Percentage Error*)
-- R² (*Coefficient of Determination*)
-- 5-fold Cross-Validation
-- Waktu komputasi
+---
 
-Hasil penelitian menunjukkan bahwa ketiga metode optimasi meningkatkan performa LightGBM dibandingkan model baseline. Berdasarkan hasil *cross-validation*, performa prediksi, stabilitas, dan waktu *tuning*, Random Search dipilih sebagai metode *hyperparameter tuning* terbaik.
+## 2. Tujuan Penelitian
 
-## Dataset
+Penelitian ini bertujuan untuk:
 
-Penelitian menggunakan dataset **HEAPO**.
+1. Membangun model LightGBM baseline untuk memprediksi konsumsi energi pada Smart Grid.
+2. Membandingkan metode Random Search, Bayesian Optimization, dan Optuna dalam mengoptimalkan *hyperparameter* LightGBM.
+3. Menentukan metode *hyperparameter tuning* yang memberikan hasil paling sesuai berdasarkan performa prediksi, stabilitas model, dan waktu komputasi.
 
-Dataset asli tidak disimpan langsung di repository karena ukuran file yang besar. Informasi sumber dan akses dataset tersedia pada:
+---
 
-**[Data Raw – HEAPO](data/raw/)**
+## 3. Dataset
 
-Sumber resmi:
+Penelitian menggunakan dataset HEAPO sebagai sumber data utama.
 
-- [HEAPO GitHub Repository](https://github.com/tbrumue/heapo)
-- [HEAPO Dataset – Zenodo](https://zenodo.org/records/15056919)
+Dataset HEAPO merupakan dataset terbuka yang menyediakan data konsumsi listrik rumah tangga yang menggunakan *heat pump* dan *smart electricity meter*.
 
-Dataset hasil preprocessing dan *feature engineering* tersedia secara dokumentatif pada:
+Dataset asli tidak disimpan langsung di repository karena ukuran data yang besar.
 
-**[Data Processed](data/Processed/)**
+### Sumber Resmi Dataset
 
-## Metode Penelitian
+**HEAPO GitHub Repository**
 
-Alur utama penelitian:
+https://github.com/tbrumue/heapo
 
-1. Data Understanding
-2. Data Integration
-3. Exploratory Data Analysis (EDA)
-4. Data Preprocessing
-5. Feature Engineering
-6. Data Splitting
-7. LightGBM Baseline
-8. Hyperparameter Tuning
-   - Random Search
-   - Bayesian Optimization
-   - Optuna (TPE)
-9. Evaluasi Model
-10. Analisis Stabilitas dengan 5-fold Cross-Validation
-11. Analisis Feature Importance
-12. Implementasi Model
+**HEAPO Dataset – Zenodo**
 
-## Hasil Utama
+https://zenodo.org/records/15056919
 
-Model LightGBM baseline pada data *test* menghasilkan:
+Informasi lebih lanjut mengenai dataset dapat dilihat pada dokumentasi di:
 
-| Metrik | Baseline |
-|---|---:|
-| MAE | 0,187378 |
-| RMSE | 0,272954 |
-| SMAPE | 60,542612% |
-| R² | 0,624751 |
+`data/raw/README.md`
 
-Hasil *5-fold cross-validation* menunjukkan bahwa Random Search menghasilkan performa rata-rata terbaik:
+---
 
-| Metrik | Random Search |
-|---|---:|
-| MAE | 0,1212 |
-| RMSE | 0,2138 |
-| SMAPE | 52,1873% |
-| R² | 0,7224 |
+## 4. Alur Penelitian
 
-Waktu *tuning* Random Search sebesar **6.409,14 detik**.
+Alur penelitian dilakukan secara sistematis mulai dari pengumpulan dataset HEAPO hingga penentuan metode *hyperparameter tuning* terbaik.
 
-Berdasarkan hasil evaluasi, Random Search dipilih sebagai metode *hyperparameter tuning* terbaik dalam penelitian ini.
+![Alur Penelitian](docs/flowchart-alur-penelitian.png)
 
-## Struktur Repository
+### Tahapan Penelitian
 
 ```text
-.
-├── data/
-│   ├── raw/
-│   │   └── README.md
-│   │
-│   └── Processed/
-│       └── README.md
-│
-├── notebooks/
-│   ├── 01_data_understanding.ipynb
-│   ├── 02_eda.ipynb
-│   ├── 03_preprocessing.ipynb
-│   ├── 04_feature_engineering.ipynb
-│   ├── 05_modeling_baseline.ipynb
-│   ├── 06_hyperparameter_tuning.ipynb
-│   └── 07_evaluation.ipynb
-│
-├── models/
-│
-├── results/
-│
-├── app/
-│
-├── README.md
-└── requirements.txt
+MULAI
+  │
+  ▼
+Pengumpulan Dataset HEAPO
+  │
+  ▼
+Data Understanding
+  │
+  ▼
+Data Integration
+  │
+  ▼
+Exploratory Data Analysis (EDA)
+  │
+  ▼
+Preprocessing Data
+  │
+  ├── Optimasi Tipe Data
+  ├── Penanganan Missing Value
+  ├── Penghapusan Fitur Tidak Digunakan
+  ├── Encoding Variabel Kategorikal
+  └── Pengurutan Berdasarkan Waktu
+  │
+  ▼
+Feature Engineering
+  │
+  ├── Temporal Feature
+  ├── Cyclical Encoding
+  ├── Lag Feature
+  └── Rolling Statistics
+  │
+  ▼
+Dataset Final
+  │
+  ▼
+Time Based Split
+  │
+  ├── Training Set (70%)
+  ├── Validation Set
+  └── Test Set
+  │
+  ▼
+Model LightGBM Baseline
+  │
+  ▼
+Evaluasi Baseline
+  │
+  ▼
+Hyperparameter Tuning
+  │
+  ├── Random Search
+  ├── Bayesian Optimization
+  └── Optuna (TPE)
+  │
+  ▼
+Evaluasi Model Hyperparameter Tuning
+  │
+  ├── MAE
+  ├── RMSE
+  ├── SMAPE
+  ├── R²
+  ├── Training Time
+  └── Tuning Time
+  │
+  ▼
+Time Series Cross Validation
+  │
+  ▼
+Feature Importance
+  │
+  ▼
+Perbandingan Hasil Model
+  │
+  ▼
+Kesimpulan dan Rekomendasi
+  │
+  ▼
+SELESAI
