@@ -58,7 +58,6 @@ Informasi lebih lanjut mengenai dataset dapat dilihat pada dokumentasi di:
 
 Alur penelitian dilakukan secara sistematis mulai dari pengumpulan dataset HEAPO hingga penentuan metode *hyperparameter tuning* terbaik.
 
-![Alur Penelitian](docs/flowchart-alur-penelitian.png)
 
 ### Tahapan Penelitian
 
