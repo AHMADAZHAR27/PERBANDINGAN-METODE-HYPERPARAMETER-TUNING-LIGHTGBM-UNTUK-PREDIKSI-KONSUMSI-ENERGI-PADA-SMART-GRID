@@ -69,7 +69,7 @@ file melebihi batas yang sesuai untuk repository GitHub.
 
 Dataset dapat diakses melalui:
 
-🔗 **[Google Drive – Processed Dataset](LINK_GOOGLE_DRIVE)**
+🔗 **https://drive.google.com/drive/folders/10a8tWZXBCcB4KtJA0qAPaRj0g7i0ft47?usp=sharing**
 
 ## Catatan
 
